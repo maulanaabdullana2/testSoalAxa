@@ -8,19 +8,19 @@ import lombok.*;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "User", schema = "public")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "UserID")
+    @Column(name = "userid")
     private Long id;
 
-    @Column(name = "Username", nullable = false, unique = true)
+    @Column(name = "username")
     private String username;
 
-    @Column(name = "Password", nullable = false)
+    @Column(name = "password")
     private String password;
 
-    @Column(name = "RoleID")
+    @Column(name = "roleid")
     private Long roleId;
 }

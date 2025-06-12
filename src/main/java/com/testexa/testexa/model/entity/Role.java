@@ -2,7 +2,7 @@ package com.testexa.testexa.model.entity;
 import jakarta.persistence.*;
 import lombok.*;
 @Entity
-@Table(name = "Role", schema = "public")
+@Table(name = "Role")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

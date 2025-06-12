@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "Permission", schema = "public")
+@Table(name = "Permission")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
