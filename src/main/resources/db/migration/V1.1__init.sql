@@ -1,7 +1,3 @@
-
-CREATE TYPE PermissionType AS ENUM ('READ', 'READ_WRITE');
-
-
 CREATE TABLE Roles (
     RoleID  SERIAL PRIMARY KEY,
     RoleName VARCHAR(50) NOT NULL
@@ -10,11 +6,9 @@ CREATE TABLE Roles (
 INSERT INTO Roles (RoleName) VALUES ('Admin');
 INSERT INTO Roles (RoleName) VALUES ('User');
 
-
-
 CREATE TABLE Permissions (
     PermissionID  SERIAL PRIMARY KEY,
-    PermissionType PermissionType NOT NULL,
+    PermissionType VARCHAR(20) NOT NULL,
     RoleID INT,
     FOREIGN KEY (RoleID) REFERENCES Roles(RoleID) ON DELETE CASCADE
 );

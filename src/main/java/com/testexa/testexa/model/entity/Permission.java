@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "Permission")
+@Table(name = "permissions")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -14,14 +14,14 @@ public class Permission {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "PermissionID")
+    @Column(name = "permissionid")
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "PermissionType", nullable = false)
+    @Column(name = "permissiontype", nullable = false)
     private PermissionType permissionType;
 
     @ManyToOne
-    @JoinColumn(name = "RoleID", referencedColumnName = "RoleID", foreignKey = @ForeignKey(name = "fk_permission_role"))
+    @JoinColumn(name = "roleid", referencedColumnName = "roleid", foreignKey = @ForeignKey(name = "fk_permission_role"))
     private Role role;
 }

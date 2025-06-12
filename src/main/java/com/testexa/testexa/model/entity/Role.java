@@ -2,7 +2,7 @@ package com.testexa.testexa.model.entity;
 import jakarta.persistence.*;
 import lombok.*;
 @Entity
-@Table(name = "Role")
+@Table(name = "roles")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -10,8 +10,8 @@ import lombok.*;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "RoleID")
+    @Column(name = "roleid")
     private Long id;
-    @Column(name = "RoleName", nullable = false, length = 50)
+    @Column(name = "rolename", nullable = false, length = 50)
     private String roleName;
 }
