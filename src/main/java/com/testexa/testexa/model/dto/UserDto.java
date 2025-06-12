@@ -5,13 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-public class UserDto {
-    private Long id;
-    private String username;
-    private String password;
-    private Long roleId;
-}
+public record UserDto(
+    Long id,
+    String username,
+    String password,
+    Long roleId
+) {}

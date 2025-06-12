@@ -34,8 +34,8 @@ public class RoleServiceImpl implements RoleService {
 
      public static Role mapToEntity(RoleDto roleDto) {
         return new Role(
-                roleDto.getId(),
-                roleDto.getRoleName()
+                roleDto.id(),
+                roleDto.roleName()
             );
     }
 
@@ -63,8 +63,8 @@ public class RoleServiceImpl implements RoleService {
 
         return mapToDto(this.roleRepository
                 .save(new Role(
-                        entity.getId(),
-                        entity.getRoleName()
+                        entity.id(),
+                        entity.roleName()
                 )));
     }
 
@@ -72,8 +72,8 @@ public class RoleServiceImpl implements RoleService {
     public RoleDto update(Long id, RoleDto entity) {
           Role role = roleRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("User not found with id " + id));
-        role.setId(entity.getId());
-        role.setRoleName(entity.getRoleName());
+        role.setId(entity.id());
+        role.setRoleName(entity.roleName());
         return mapToDto(roleRepository.save(role));
     }
 

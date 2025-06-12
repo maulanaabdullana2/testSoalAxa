@@ -23,18 +23,18 @@ public class PermissionImpl implements PermissionService {
     private final PermissionRepository permissionRepository;
    public static Permission mapToEntity(PermissionDto dto) {
     return Permission.builder()
-            .id(dto.getId())
-            .permissionType(dto.getPermissionType())
-            .role(new Role(dto.getRoleId(), null))
+            .id(dto.id())
+            .permissionType(dto.permissionType())
+            .role(new Role(dto.roleId(), null))
             .build();
 }
 
 public static PermissionDto mapToDto(Permission permission) {
-    return PermissionDto.builder()
-            .id(permission.getId())
-            .permissionType(permission.getPermissionType())
-            .roleId(permission.getRole().getId())
-            .build();
+    return new PermissionDto(
+        permission.getId(),
+        permission.getPermissionType(),
+        permission.getRole() != null ? permission.getRole().getId() : null
+    );
 }
 
 
@@ -72,8 +72,8 @@ public PermissionDto update(Long id, PermissionDto entity) {
         .findById(id)
         .orElseThrow(() -> new EntityNotFoundException("Permission not found with id " + id));
 
-    permission.setPermissionType(entity.getPermissionType());
-    permission.setRole(new Role(entity.getRoleId(), null));
+    permission.setPermissionType(entity.permissionType());
+    permission.setRole(new Role(entity.roleId(), null));
 
     permission = this.permissionRepository.save(permission);
     return mapToDto(permission);

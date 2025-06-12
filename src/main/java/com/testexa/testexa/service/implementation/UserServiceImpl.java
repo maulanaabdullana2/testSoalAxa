@@ -31,10 +31,10 @@ public class UserServiceImpl implements UserService {
 
     public static User mapToEntity(UserDto userDto) {
         return new User(
-                userDto.getId(),
-                userDto.getUsername(),
-                userDto.getPassword(),
-                userDto.getRoleId());
+                userDto.id(),
+                userDto.username(),
+                userDto.password(),
+                userDto.roleId());
     }
 
     @Override
@@ -60,10 +60,11 @@ public class UserServiceImpl implements UserService {
 
         return mapToDto(this.userRepository
                 .save(new User(
-                        entity.getId(),
-                        entity.getUsername(),
-                        entity.getPassword(),
-                        entity.getRoleId())));
+                        entity.id(),
+                        entity.username(),
+                        entity.password(),
+                        entity.roleId())));
+
     }
 
     @Override
@@ -71,19 +72,18 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("User not found with id " + id));
 
-        user.setUsername(entity.getUsername());
-        user.setPassword(entity.getPassword());
-        user.setRoleId(entity.getRoleId());
+        user.setUsername(entity.username());
+        user.setPassword(entity.password());
+        user.setRoleId(entity.roleId());
 
         return mapToDto(userRepository.save(user));
     }
 
     @Override
     public void delete(Long id) {
-        if (!userRepository.existsById(id)) {
-            throw new EntityNotFoundException("User not found with id " + id);
-        }
-        userRepository.deleteById(id);
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("User not found with id " + id));
+        userRepository.delete(user);
     }
 
 }
